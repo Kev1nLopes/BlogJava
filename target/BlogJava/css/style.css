@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body{
+    min-width: 100vh;
+    height: 100%;
+    width: 100%;
+    margin: 0px !important;
+}
+
+#inputThinking
+{
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 50px;
+
+
+}
+
+#inputThinking:focus{
+    border: none;
+}
+
+.post{
+    height: fit-content;
+    border-bottom: 2px solid gray;
+    padding: 3px 5px;
+}
+.main-column{
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+}
+.pointer{
+    cursor: pointer;
+}
+.inputForm
+{
+    min-width: 150px;
+    width: 100%;
+    max-width: 300px;
+    text-indent: 8px;
+    border: 1px solid gray;
+    outline: none;
+    height: 38px;
+    border-radius: 1rem;
+}
+inputForm:placeholder{
+    font-size: 14px;
+}
