@@ -1,5 +1,6 @@
 package Dao;
 
+import Models.Post;
 import Models.User;
 import services.ConnectionFactory;
 
@@ -83,5 +84,51 @@ public class UserDao {
         }
 
  */
+    }
+
+    public User getById(int id) throws  SQLException{
+
+        String sql = "select * from users where id = ?";
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+            User user = new User();
+            while(res.next()){
+                user.setUserName(res.getString("username"));
+                user.setEmail(res.getString("email"));
+                user.setPassword(res.getString("password"));
+                user.setData_nasc(res.getTimestamp("data_nasc"));
+            }
+            res.close();
+            stmt.close();
+            return user;
+
+        }catch(SQLException e){
+            throw  new RuntimeException(e);
+        }
+
+    }
+
+    public User update(User user) throws SQLException{
+
+        String sql = "update users set username = ?, password = ?, email = ?, data_nasc = ?";
+
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setString(1, user.getUserName());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getEmail());
+            stmt.setTimestamp(4, user.getData_nasc());
+            stmt.execute();
+
+            return user;
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }

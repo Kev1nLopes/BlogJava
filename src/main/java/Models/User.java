@@ -4,7 +4,14 @@ import java.sql.Timestamp;
 
 public class User {
 
-    public User(Integer id, String userName, String password, Timestamp data_nasc, String email) {
+    public User(String userName, String password, Timestamp data_nasc, String email) {
+
+        UserName = userName;
+        Password = password;
+        data_nasc = data_nasc;
+        Email = email;
+    }
+    public User(int id,String userName, String password, Timestamp data_nasc, String email) {
         Id = id;
         UserName = userName;
         Password = password;

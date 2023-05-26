@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    private static final String url = "jdbc:postgresql://localhost:5432/blog2";
+    private static final String url = "jdbc:postgresql://localhost:5432/blog";
 
     private static final String login = "postgres";
 
-    private static final String pass = "1234";
+    private static final String pass = "hellpis";
     public Connection getConnection(){
 //            try{
 //                Class.forName("org.postgresql.Driver");

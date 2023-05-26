@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body{
+    min-width: 100vh;
+    height: 100%;
+    width: 100%;
+}
+
+#inputThinking
+{
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 50px;
+
+
+}
+
+#inputThinking:focus{
+    border: none;
+}
+
+.post{
+    height: fit-content;
+    border-bottom: 2px solid gray;
+    padding: 3px 5px;
+}
+.main-column{
+    background: red;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+}
+.pointer{
+    cursor: pointer;
+}
+.inputForm
+{
+    border: none;
+    outline: none;
+    height: 48px;
+    border-radius: 1rem;
+}

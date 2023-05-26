@@ -1,6 +1,8 @@
 package teste;
 
+import Dao.PostDao;
 import Dao.UserDao;
+import Models.Post;
 import Models.User;
 import services.ConnectionFactory;
 
@@ -14,18 +16,9 @@ public class ClienteTeste {
     public static void main(String[] args) throws SQLException {
 
         User user =  new User(100, "lUIZ","12345", new Timestamp(System.currentTimeMillis()), "pedro@gmail.com" );
+        Post post = new Post(1, "Cade o luiz ?", "Não sei");
 
-
-            UserDao dao = new UserDao();
-            dao.create(user);
-            List<User> users = dao.get();
-
-
-            for(User u: users){
-                System.out.println(u.getUserName());
-            }
-
-
+        PostDao dao = new PostDao();
 
     }
 
