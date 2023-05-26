@@ -7,6 +7,7 @@
 
 
 <c:if test="${type=='text'}">
+<<<<<<< HEAD
     <div style="display: flex; flex-direction: column; max-width: 300px; min-width: 150px; width: 100%" class="align-items-center justify-content-center" >
         <label for="${id}" class="align-self-start">${id}</label>
         <input class="inputForm" id="${id}" placeholder="${place}" type="${type}" name="${id}" />
@@ -20,6 +21,10 @@
         <input class="inputForm" id="${id}" placeholder="${place}" type="${type}" name="${id}" />
     </div>
 
+=======
+    <label for="${id}">${id}</label>
+    <input class="inputForm" id="${id}" placeholder="${place}" type="${type}" name="${place}" />
+>>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
 </c:if>
 
 

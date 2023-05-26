@@ -9,7 +9,10 @@ html, body{
     min-width: 100vh;
     height: 100%;
     width: 100%;
+<<<<<<< HEAD
     margin: 0px !important;
+=======
+>>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
 }
 
 #inputThinking
@@ -32,6 +35,10 @@ html, body{
     padding: 3px 5px;
 }
 .main-column{
+<<<<<<< HEAD
+=======
+    background: red;
+>>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
     border-left: 2px solid gray;
     border-right: 2px solid gray;
 }
@@ -40,6 +47,7 @@ html, body{
 }
 .inputForm
 {
+<<<<<<< HEAD
     min-width: 150px;
     width: 100%;
     max-width: 300px;
@@ -52,3 +60,10 @@ html, body{
 inputForm:placeholder{
     font-size: 14px;
 }
+=======
+    border: none;
+    outline: none;
+    height: 48px;
+    border-radius: 1rem;
+}
+>>>>>>> 3da768a712f55e030cce49049070d16ab1da814e

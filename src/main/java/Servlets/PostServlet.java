@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
 public class PostServlet extends HttpServlet {
 
     //Metodo resposável por atender requisições e gerar as respostas adequadasaa

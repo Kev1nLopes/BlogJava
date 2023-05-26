@@ -6,11 +6,17 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
+<<<<<<< HEAD
     <welcome-file>cadastroUsuario.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 
+=======
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+>>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
 
 
 </web-app>
