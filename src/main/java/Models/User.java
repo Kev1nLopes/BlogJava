@@ -10,6 +10,7 @@ public class User {
         Password = password;
         data_nasc = data_nasc;
         Email = email;
+
     }
     public User(int id,String userName, String password, Timestamp data_nasc, String email) {
         Id = id;
@@ -50,6 +51,14 @@ public class User {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public Integer getId() {
+        return Id;
+    }
+
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public Integer Id;

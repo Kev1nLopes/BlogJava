@@ -2,21 +2,7 @@ package Models;
 
 public class Post {
 
-    public Post(int id, int author_id, String title, String content) {
-        Id = id;
-        Author_id = author_id;
-        this.title = title;
-        Content = content;
-    }
-    public Post( int author_id, String title, String content) {
-
-        Author_id = author_id;
-        this.title = title;
-        Content = content;
-    }
-
     public Post(){}
-
 
     private int Id;
 
@@ -27,16 +13,18 @@ public class Post {
     public void setId(int id) {
         Id = id;
     }
-
-    private int Author_id;
     private String title;
     private String Content;
-    public int getAuthor_id() {
-        return Author_id;
+
+
+    public User User;
+
+    public Models.User getUser() {
+        return User;
     }
 
-    public void setAuthor_id(int author_id) {
-        Author_id = author_id;
+    public void setUser(Models.User user) {
+        User = user;
     }
 
     public String getTitle() {

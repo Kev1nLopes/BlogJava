@@ -1,6 +1,7 @@
 package Dao;
 
 import Models.Post;
+import Models.User;
 import services.ConnectionFactory;
 
 import java.sql.Connection;
@@ -17,11 +18,9 @@ public class PostDao {
         this.connection = new ConnectionFactory().getConnection();
     }
 
-
-
     public List<Post> get() throws SQLException {
 
-        String sql = "select * from posts";
+        String sql = "select p.id, p.title, p.content, p.user_id, u.username, u.data_nasc, u.email  from posts p inner join users u on p.user_id = u.id";
         List<Post> posts = new ArrayList<Post>();
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -29,10 +28,14 @@ public class PostDao {
 
             while(res.next()){
                 Post post = new Post();
+                post.User = new User();
                 post.setId(res.getInt("id"));
-                post.setAuthor_id(res.getInt("user_id"));
                 post.setTitle(res.getString("title"));
                 post.setContent(res.getString("content"));
+                post.User.setId(res.getInt("user_id"));
+                post.User.setUserName(res.getString("username"));
+                post.User.setData_nasc(res.getTimestamp("data_nasc"));
+                post.User.setEmail(res.getString("email"));
                 posts.add(post);
 
             }
@@ -62,7 +65,7 @@ public class PostDao {
            post.setId(res.getInt("id"));
            post.setTitle(res.getString("title"));
            post.setContent(res.getString("content"));
-           post.setAuthor_id(res.getInt("user_id"));
+           post.User.setId(res.getInt("user_id"));
 
 
             res.close();
@@ -75,6 +78,12 @@ public class PostDao {
         return post;
     }
 
+    /**
+     *
+     *
+     * @param post
+     * @return
+     */
     public Post create(Post post){
 
         String sql = "INSERT INTO posts(title,content, user_id)"
@@ -85,7 +94,7 @@ public class PostDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, post.getTitle());
             stmt.setString(2,post.getContent());
-            stmt.setInt(3, post.getAuthor_id());
+            stmt.setInt(3, post.User.getId());
 
             stmt.execute();
             stmt.close();

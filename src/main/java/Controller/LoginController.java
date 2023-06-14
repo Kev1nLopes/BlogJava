@@ -20,14 +20,18 @@ public class LoginController extends HttpServlet {
 //        super.service(req, res);
         System.out.println("Bateu no login");
 
-        String login =  req.getParameter("Usuario") ;
+        String login =  req.getParameter("Usuario");
         String senha =  req.getParameter("Senha");
 
-        RequestDispatcher dispatcher;
 
-        if(new LoginService().autenticar(login,senha)){
+        RequestDispatcher dispatcher;
+        int idUser = new LoginService().autenticar(login,senha);
+
+        if(idUser != 0){
+            req.setAttribute("userId", idUser);
             dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
         }else{
+
             dispatcher = req.getRequestDispatcher("/cadastroUsuario.jsp");
         }
 

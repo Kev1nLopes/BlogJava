@@ -5,16 +5,16 @@ import Models.User;
 
 public class LoginService {
 
-    public boolean autenticar(String login, String senha){
+    public int autenticar(String login, String senha){
         User u = new UserDao().auth(login, senha);
         if(!u.getUserName().isEmpty() && u.getUserName().equals(login) && u.getPassword().equals(senha)) {
 
-            System.out.println("true");
-            return true;
+
+            return u.getId();
         }else{
             System.out.println("false");
-            return false;
-//            dispatcher = req.getRequestDispatcher("/cadastroUsuario.jsp");
+            return 0;
+//
         }
     }
 

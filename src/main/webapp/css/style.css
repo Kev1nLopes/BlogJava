@@ -1,69 +1,191 @@
 *{
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
 
-html, body{
-    min-width: 100vh;
+body{
+    min-height: 100vh;
     height: 100%;
     width: 100%;
-<<<<<<< HEAD
-    margin: 0px !important;
-=======
->>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
+}
+.row{
+    margin: 0 !important;
+
 }
 
-#inputThinking
-{
+.container{
+    min-height: 100vh !important;
+    height: inherit !important;
+}
+.main-area{
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+}
+
+
+img[alt="twitter-logo"]{
+    width: 50px;
+    height: 40px;
+    transform: rotateY(180deg);
+}
+
+ul, li,a{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+a, a:visited, a:link{
+    color: black;
+}
+
+header{
+    position: sticky;
+    top: 0px;
+    border-bottom: 1px solid #ccc;
+}
+header h3{
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.type-content{
+    padding: 10px;
+}
+
+.main-area-content{
+    padding: 10px 0px;
+}
+.main-area-content img[alt="user-image"]{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.main-area-content .text-area{
+    height: 40px;
+}
+.main-area-content input#wih{
     border: none;
     outline: none;
-    background: transparent;
-    height: 50px;
-
+    height: 30px;
+    width: 100%;
+    background-color: transparent;
 
 }
+.btns{
+    border-left: 1px solid #ccc;
+    padding: 0px 3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
-#inputThinking:focus{
+.btnPattern{
+    min-width: fit-content;
+    padding: 0px 10px;
+    border-radius: 1rem;
+    background-color: blueviolet;
+    color: WHITE;
+    outline: none;
     border: none;
+}
+.bar{
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+}
+.what-is-happen{
+    width: 100%;
+    border-bottom: 1px solid #ccc;
 }
 
 .post{
-    height: fit-content;
-    border-bottom: 2px solid gray;
-    padding: 3px 5px;
+    min-height: fit-content;
+    padding: 10px 0px;
+    border-bottom: 2px solid #DDE6ED;
 }
-.main-column{
-<<<<<<< HEAD
-=======
-    background: red;
->>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
-    border-left: 2px solid gray;
-    border-right: 2px solid gray;
+.post .user-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    line-height: 16px;
 }
-.pointer{
-    cursor: pointer;
-}
-.inputForm
-{
-<<<<<<< HEAD
-    min-width: 150px;
-    width: 100%;
-    max-width: 300px;
-    text-indent: 8px;
-    border: 1px solid gray;
-    outline: none;
-    height: 38px;
-    border-radius: 1rem;
-}
-inputForm:placeholder{
-    font-size: 14px;
-}
-=======
+.post .user-info button{
     border: none;
     outline: none;
-    height: 48px;
-    border-radius: 1rem;
+    background: transparent;
+    position: relative;
+
 }
->>>>>>> 3da768a712f55e030cce49049070d16ab1da814e
+.post .user-info button .menu{
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1rem;
+    border: 1px solid gray;
+    display: none;
+
+
+}
+.post .user-info button .menu ul li{
+    width: 100%;
+    padding: 3px 15px;
+    border-bottom: 1px solid gray;
+    white-space: nowrap;
+
+}
+.post .user-info button:hover .menu {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.post .user-info span{
+    font-size: 14px;
+    font-weight: bold;
+}
+.post .user-info small{
+    font-size: 10px;
+    line-height: 11px;
+}
+.post .post-content{
+    font-size: 14px;
+}
+.topic-area{
+    padding: 10px 0px;
+    display: flex;
+    justify-content: center;
+}
+.input-search{
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    outline: none;
+    background-color: #DDE6ED;
+    filter: opacity(0.3);
+    height: 30px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+input#search-topic{
+    height: 13px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+}
+
+
+input#search-topic::placeholder{
+    color: #3c4750;
+    font-size: 14px;
+
+
+}
