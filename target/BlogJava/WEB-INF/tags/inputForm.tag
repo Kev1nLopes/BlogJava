@@ -8,7 +8,7 @@
 
 <c:if test="${type=='text'}">
 
-    <div style="display: flex; flex-direction: column; max-width: 300px; min-width: 150px; width: 100%" class="align-items-center justify-content-center" >
+    <div  class="d-flex flex-column align-items-center justify-content-center w-100" >
         <label for="${id}" class="align-self-start">${id}</label>
         <input class="inputForm" id="${id}" placeholder="${place}" type="${type}" name="${id}" />
     </div>
@@ -16,14 +16,10 @@
 </c:if>
 
 <c:if test="${type=='date'}">
-    <div style="display: flex; flex-direction: column; max-width: 300px; min-width: 150px; width: 100%" class="align-items-center justify-content-center" >
+    <div  class="d-flex flex-column align-items-center justify-content-center w-100" >
         <label for="${id}" class="align-self-start">${id}</label>
         <input class="inputForm" id="${id}" placeholder="${place}" type="${type}" name="${id}" />
     </div>
-
-
-    <label for="${id}">${id}</label>
-    <input class="inputForm" id="${id}" placeholder="${place}" type="${type}" name="${place}" />
 
 </c:if>
 

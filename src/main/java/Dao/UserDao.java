@@ -97,6 +97,92 @@ public class UserDao {
         }
     }
 
+    public List<User> getUserThatIFollow(int AuthUserId){
+
+        String sql = "SELECT users.id, users.username " +
+                "FROM users " +
+                "JOIN user_follow ON users.id = user_follow.user_id_followed " +
+                "WHERE user_follow.user_id_following = ?";
+
+        System.out.println(AuthUserId + "Usuario id logado");
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, AuthUserId);
+            List<User> usersThatIFollow = new ArrayList<User>();
+            ResultSet res = stmt.executeQuery();
+            while(res.next()){
+                User user = new User();
+                user.setUserName(res.getString("username"));
+                user.setId(res.getInt("id"));
+                usersThatIFollow.add(user);
+                System.out.println(user.UserName);
+            }
+            res.close();
+            stmt.close();
+
+            return usersThatIFollow;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public boolean unfollowUser(int idUser, int idFollowed){
+
+        String sql = "delete from user_follow user_follow where" +
+                " user_id_following = ? and user_id_followed = ? ";
+
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, idUser);
+            stmt.setInt(2, idFollowed);
+            stmt.execute();
+            stmt.close();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public List<User> GetUsersThatINotFollow(int AuthUserId){
+
+        String sql = "SELECT id, username " +
+                "FROM users " +
+                "WHERE id NOT IN (" +
+                "    SELECT user_id_followed" +
+                "    FROM user_follow" +
+                "    WHERE user_id_following = ? )";
+
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, AuthUserId);
+            List<User> usersThatIFollow = new ArrayList<User>();
+            ResultSet res = stmt.executeQuery();
+            while(res.next()){
+                User user = new User();
+                user.setUserName(res.getString("username"));
+                user.setId(res.getInt("id"));
+                usersThatIFollow.add(user);
+                System.out.println(user.UserName);
+            }
+            res.close();
+            stmt.close();
+
+            return usersThatIFollow;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    };
+
+
+
     public User getById(int id) throws  SQLException{
 
         String sql = "select * from users where id = ?";

@@ -7,7 +7,8 @@
 <%@	taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"	%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
 <%
-    int userId = (int) request.getAttribute("userId");
+    int userId = (int) request.getSession().getAttribute("userId");
+    String user = (String) request.getSession().getAttribute("Usuario");
 %>
 
 
@@ -36,48 +37,29 @@
                 </li>
                 <li class="d-flex align-items-center gap-2">
                     <ion-icon name="search"></ion-icon>
-                    <a href="/">Explorar</a>
+                    <a href="listagemUsuarios.jsp">Descobrir pessoas</a>
 
                 </li>
                 <li class="d-flex align-items-center gap-2">
                     <ion-icon name="notifications"></ion-icon>
-                    <a href="/">Notificações</a>
+                    <a href="seguindo.jsp">Seguindo</a>
 
                 </li>
                 <li class="d-flex align-items-center gap-2">
                     <ion-icon name="text"></ion-icon>
-                    <a href="/">Mensagens</a>
+                    <a href="/">Seguidores</a>
 
                 </li>
-                <li class="d-flex align-items-center gap-2">
-                    <ion-icon name="list-box"></ion-icon>
-                    <a href="/">Listas</a>
 
-                </li>
-                <li class="d-flex align-items-center gap-2">
-                    <ion-icon name="bookmark"></ion-icon>
-                    <a href="/">Itens Salvos</a>
-
-                </li>
-                <li class="d-flex align-items-center gap-2">
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                    <a href="/">Verificadas</a>
-
-                </li>
-                <li class="d-flex align-items-center gap-2">
-                    <ion-icon name="contact"></ion-icon>
-                    <a href="/">Perfil</a>
-
-                </li>
-                <li class="d-flex align-items-center gap-2">
-                    <ion-icon name="more"></ion-icon>
-                    <a href="/">Mais</a>
-
-                </li>
 
             </ul>
-            <div class="user-info">
-                <%= userId %>
+            <div class="user-info mt-auto mb-3 d-flex flex-column ">
+                <div class="d-flex gap-2" style="border: 1px solid gray; border-radius: 2rem; width: fit-content; padding: 10px">
+                    <img src="imagens/dog.jpg" alt="user-image" srcset="" width="25" class="rounded-circle">
+                    <%= user %>
+                </div>
+                <a href="logout"  style="color: red; text-align: center">Logout</a>
+
             </div>
 
         </div>
@@ -102,7 +84,7 @@
                     <div class="col-1">
                         <img src="imagens/dog.jpg" alt="user-image" srcset="">
                     </div>
-                    <form method="post" action="createPost" class="col-11 d-flex flex-column gap-1">
+                    <form method="post" action="post" class="col-11 d-flex flex-column gap-1">
                         <div   class="text-area">
                             <input type="text" name="action" id="action" value="createPost" class="d-none">
                             <input type="number" name="idUser" id="idUser" value="<%= userId%>" class="d-none">
@@ -127,11 +109,26 @@
                 </div>
 
 
+                <div class="d-flex flex-column-reverse">
+                    <jsp:useBean id="dao" class="Dao.PostDao"/>
+                    <c:forEach varStatus="post.id" var="post" items="${dao.get()}">
+                        <t:post  post="${post}" userPhoto="sinoco.jpg"  />
+                    </c:forEach>
 
-                <jsp:useBean id="dao" class="Dao.PostDao"/>
-                <c:forEach varStatus="post.id" var="post" items="${dao.get()}">
-                    <t:post  post="${post}" userPhoto="sinoco.jpg"  />
-                </c:forEach>
+                </div>
+
+                <div class="overlay" style=""></div>
+                <div class="modal-comentario">
+                    <div class="modal-user-info">
+
+                    </div>
+                    <div class="modal-content">
+
+                    </div>
+
+                </div>
+
+
 
             </div>
 
@@ -141,10 +138,11 @@
                 <ion-icon name="search"></ion-icon>
                 <input type="text" name="search-topic" id="search-topic" placeholder="buscar no Twitthor">
             </div>
-
         </div>
     </div>
 </main>
 <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+
+
 </body>
 </html>

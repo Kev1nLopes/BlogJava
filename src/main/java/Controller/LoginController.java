@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 @WebServlet("login")
@@ -28,7 +29,10 @@ public class LoginController extends HttpServlet {
         int idUser = new LoginService().autenticar(login,senha);
 
         if(idUser != 0){
-            req.setAttribute("userId", idUser);
+            //Use session here
+            HttpSession session = ((HttpServletRequest) req).getSession();
+            session.setAttribute("Usuario", login);
+            session.setAttribute("userId", idUser);
             dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
         }else{
 

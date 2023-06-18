@@ -20,6 +20,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        System.out.println("kevin legal");
         String username = req.getParameter("Usuario");
         String email = req.getParameter("Email");
         String password = req.getParameter("Senha");
@@ -27,7 +28,8 @@ public class RegisterController extends HttpServlet {
         RequestDispatcher dispatcher;
         User u = new User(username, password, DataNasc, email);
         if(new UserDao().create(u) != null){
-            dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
+
+            dispatcher = req.getRequestDispatcher("/login.jsp");
         }else{
             dispatcher = req.getRequestDispatcher("/cadastroUsuario.jsp");
         }

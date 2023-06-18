@@ -45,9 +45,7 @@
         overflow: auto;
 
     }
-    #cadastro{
-        display: none;
-    }
+
     h3,p{
         color: aliceblue;
         font-weight: bold;
@@ -77,19 +75,16 @@
       </div>
       <div class="right-area col-6 ">
 
-          <form method="POST" action="login" id="login" style="height: calc(100% - 60px);" class=" row flex-column align-items-center justify-content-center gap-3">
-              <small class="text-center">Ainda não possui conta ? <span onclick="reverseForm('cadastro')">Cadastre-se</span></small>
-              <cadastro:inputForm id="Usuario" place="Informe seu usuario" type="text" ></cadastro:inputForm>
-              <cadastro:inputForm id="Senha" place="Informe sua senha" type="text"></cadastro:inputForm>
-              <button  type="submit" class="btn btn-success col-7 ">Entrar</button>
-          </form>
-          <form method="POST" action="register" id="cadastro" style="height: calc(100% - 60px);" class="row flex-column align-items-center justify-content-center gap-2 position-relative">
-              <small class="text-center">ja possui uma  conta ? <span onclick="reverseForm('login')">Entrar</span></small>
+          <form method="POST" action="register" id="cadastro" style="height: 100% ; overflow-y: auto" class="w-100 row flex-column align-items-center justify-content-center gap-2 position-relative">
+              <small class="text-center">ja possui uma  conta ? <a href="login.jsp">Entrar</a></small>
               <cadastro:inputForm id="Usuario" place="Informe seu usuario" type="text" ></cadastro:inputForm>
               <cadastro:inputForm id="Email" place="Informe seu e-mail" type="text"></cadastro:inputForm>
               <cadastro:inputForm id="Senha" place="Informe sua senha" type="text"></cadastro:inputForm>
               <cadastro:inputForm id="Data_Nascimento" place="Data Nascimento" type="date"></cadastro:inputForm>
-              <button  type="submit" class="btn btn-success col-7" style="" >Cadastrar</button>
+              <div class="col-12 d-flex align-items-center  justify-content-center">
+                  <button  type="submit" class="btnPattern sucess w-75" >Cadastrar</button>
+              </div>
+
           </form>
 
 

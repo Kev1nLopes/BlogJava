@@ -20,7 +20,10 @@ public class PostDao {
 
     public List<Post> get() throws SQLException {
 
-        String sql = "select p.id, p.title, p.content, p.user_id, u.username, u.data_nasc, u.email  from posts p inner join users u on p.user_id = u.id";
+        String sql = "select p.id, p.title, p.content, p.user_id, u.username, u.data_nasc, u.email  from posts p " +
+                " inner join users u on p.user_id = u.id  where p.id not in " +
+                " (select posts_r.post_atual  from posts_r  inner join posts on posts.id = posts_r.post_atual)";
+
         List<Post> posts = new ArrayList<Post>();
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -48,6 +51,24 @@ public class PostDao {
         }
 
     }
+    public boolean follow(int userId, int followedId){
+        String sql = "insert into user_follow "
+                + "values(?,?)";
+
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            stmt.setInt(2, followedId);
+            stmt.execute();
+            stmt.close();
+
+            return true;
+        }catch(SQLException e){
+            throw  new RuntimeException(e);
+
+        }
+    }
+
 
     public Post getById(int id){
         String sql = "select * from posts where id = ?";
