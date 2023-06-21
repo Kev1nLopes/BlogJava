@@ -245,7 +245,7 @@ input#search-topic::placeholder{
 
 }
 
-.overlay{
+#overlay{
     display: none;
     position: fixed;
     left: 0;
@@ -259,13 +259,13 @@ input#search-topic::placeholder{
     filter: opacity(0.8);
 }
 
-.modal-comentario{
+#modal-comentario{
     display: none;
-    height: 80vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
     width: 70vh;
-    border-radius: 2rem;
     background: white;
-    padding: 30px;
     position: absolute;
     z-index: 12;
     top: 50%;

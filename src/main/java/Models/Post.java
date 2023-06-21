@@ -17,7 +17,7 @@ public class Post {
     private String Content;
 
 
-    public User User;
+    public User User = new User();
 
     public Models.User getUser() {
         return User;

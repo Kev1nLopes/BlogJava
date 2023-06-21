@@ -73,8 +73,6 @@
     </div>
     <div class="right-area col-6 ">
 
-
-
         <form method="POST" action="login" id="login" style="height: calc(100% - 60px);" class=" row flex-column align-items-center justify-content-center gap-3">
             <small class="text-center">Ainda não possui conta ? <a href="cadastroUsuario.jsp">Cadastre-se</a></small>
             <cadastro:inputForm id="Usuario" place="Informe seu usuario" type="text" ></cadastro:inputForm>

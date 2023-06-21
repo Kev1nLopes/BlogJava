@@ -51,6 +51,37 @@ public class PostDao {
         }
 
     }
+
+
+    public List<Post> getPostComments(int postMainId){
+
+
+        String sql = "select * from posts inner join posts_r pr on pr.post_atual = posts.id and post_main = ?";
+
+        try{
+
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, postMainId);
+            ResultSet res = stmt.executeQuery();
+            List<Post> posts = new ArrayList<Post>();
+
+            while(res.next()){
+                Post post = new Post();
+                post.setId(res.getInt("id"));
+                post.setTitle(res.getString( "title"));
+                post.setContent(res.getString( "content"));
+                posts.add(post);
+            }
+            res.close();
+            stmt.close();
+
+            return posts;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean follow(int userId, int followedId){
         String sql = "insert into user_follow "
                 + "values(?,?)";

@@ -33,6 +33,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = ((HttpServletRequest) req).getSession();
             session.setAttribute("Usuario", login);
             session.setAttribute("userId", idUser);
+            req.setAttribute("modal", false);
             dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
         }else{
 

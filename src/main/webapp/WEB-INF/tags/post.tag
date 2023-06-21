@@ -7,17 +7,17 @@
 <%
     int userId = (int) request.getSession().getAttribute("userId");
     String user = (String) request.getSession().getAttribute("Usuario");
-    boolean openModal = false;
+
 %>
 
-<div class="row post">
+<div class="row post" post-action-id="${post.id}">
     <div class="col-1">
         <img src="imagens/dog.jpg" alt="user-image" srcset="">
     </div>
     <div class="col-11 d-flex flex-column">
         <div class="user-info">
             <div class="d-flex gap-1">
-                <span> ${post.user.userName}</span>
+                <span>${post.id} ${post.user.userName}</span>
                 <small>@ ${post.user.userName}</small>
             </div>
             <button>
@@ -45,7 +45,7 @@
             ${post.content}
         </div>
         <div class="post-actions d-flex justify-content-between w-75 mt-2">
-            <ion-icon name="chatboxes"  class="pointer" onclick="comentar()"></ion-icon>
+            <ion-icon name="chatboxes"  class="pointer" onclick="openModal(${post.id})"></ion-icon>
             <ion-icon name="share-alt"></ion-icon>
             <!--Quando curtido mostrar o outro coracao -->
             <ion-icon name="heart-empty"></ion-icon> <!-- <ion-icon name="heart"></ion-icon> -->

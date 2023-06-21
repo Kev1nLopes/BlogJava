@@ -9,6 +9,7 @@
 <%
     int userId = (int) request.getSession().getAttribute("userId");
     String user = (String) request.getSession().getAttribute("Usuario");
+    boolean modal = (boolean) request.getAttribute("modal") || false;
 %>
 
 
@@ -117,19 +118,17 @@
 
                 </div>
 
-                <div class="overlay" style=""></div>
-                <div class="modal-comentario">
-                    <div class="modal-user-info">
+
+                    <div id="overlay" onclick="closeModal()"></div>
+                    <div id="modal-comentario">
+                        <div class="modal-user-info">
+
+                        </div>
+                        <div class="modal-content">
+
+                        </div>
 
                     </div>
-                    <div class="modal-content">
-
-                    </div>
-
-                </div>
-
-
-
             </div>
 
         </div>
@@ -141,6 +140,69 @@
         </div>
     </div>
 </main>
+
+
+<script>
+    function closeModal() {
+
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("modal-comentario").style.display = "none";
+        const postModal = document.getElementById("modal-comentario").innerHTML = "";
+
+    }
+     function openModal(id) {
+        let data =  getPostComments(id);
+        console.log(data);
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("modal-comentario").style.display = "block";
+
+    }
+
+     async function getPostComments(id){
+
+        const response = await fetch('http://localhost:8080/BlogJava/post', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "action=" + "getComments" + "&postId=" + id
+        });
+        console.log(response);
+
+         const list = await response.text();
+         const listJson = JSON.parse(list);
+
+         for (let i of listJson) {
+             let post = document.querySelector('.post').cloneNode(true);
+             console.log(i);
+            post.querySelector('.user-info').querySelector('span').textContent = i.Id;
+            post.querySelector('.post-content').textContent = i.Content;
+            document.querySelector('#modal-comentario').appendChild(post);
+         }
+
+
+
+
+
+    }
+
+    async function getPost(id){
+        await fetch('http://localhost:8080/BlogJava/post', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "action=" + "getPost" + "&postId=" + id
+        })
+            .then(response => response.json())
+            .then((data)=> data)
+            .catch((err) =>{
+                console.log(err)
+            })
+    }
+
+
+</script>
 <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
 
 
