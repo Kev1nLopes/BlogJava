@@ -16,6 +16,26 @@ public class Post {
     private String title;
     private String Content;
 
+    private int ILiked;
+
+    public int getILiked() {
+        return ILiked;
+    }
+
+    public void setILiked(int ILiked) {
+        this.ILiked = ILiked;
+    }
+
+    public int getCurtidas() {
+        return Curtidas;
+    }
+
+    public void setCurtidas(int curtidas) {
+        Curtidas = curtidas;
+    }
+
+    private int Curtidas;
+
 
     public User User = new User();
 

@@ -112,7 +112,7 @@
 
                 <div class="d-flex flex-column-reverse">
                     <jsp:useBean id="dao" class="Dao.PostDao"/>
-                    <c:forEach varStatus="post.id" var="post" items="${dao.get()}">
+                    <c:forEach varStatus="post.id" var="post" items="${dao.get(userId)}">
                         <t:post  post="${post}" userPhoto="sinoco.jpg"  />
                     </c:forEach>
 

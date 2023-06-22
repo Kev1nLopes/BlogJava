@@ -48,7 +48,20 @@
             <ion-icon name="chatboxes"  class="pointer" onclick="openModal(${post.id})"></ion-icon>
             <ion-icon name="share-alt"></ion-icon>
             <!--Quando curtido mostrar o outro coracao -->
-            <ion-icon name="heart-empty"></ion-icon> <!-- <ion-icon name="heart"></ion-icon> -->
+            <div class="d-flex align-items-center justify-content-center">
+
+                <c:choose>
+                    <c:when test="${post.ILiked == 1}">
+                        <ion-icon name="heart"></ion-icon>
+                    </c:when>
+                    <c:when test="${post.ILiked == 0}">
+                        <ion-icon name="heart-empty"></ion-icon>
+                    </c:when>
+                </c:choose>
+                <p>${post.curtidas}</p>
+
+            </div>
+
             <ion-icon name="bookmark"></ion-icon>
             <ion-icon name="cash"></ion-icon>
         </div>
