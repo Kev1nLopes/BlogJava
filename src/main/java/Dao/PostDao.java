@@ -81,7 +81,8 @@ public class PostDao {
     public List<Post> getPostComments(int postMainId){
 
 
-        String sql = "select * from posts inner join posts_r pr on pr.post_atual = posts.id and post_main = ?";
+        String sql = "select posts.id, posts.user_id, posts.title, posts.\"content\", count(curtida.post_id) as \"curtidas\"   from posts inner join posts_r pr on pr.post_atual = posts.id and post_main = ?"
+                + " left join curtida on posts.id = curtida.post_id group by 1 ; ";
 
         try{
 
@@ -95,6 +96,7 @@ public class PostDao {
                 post.setId(res.getInt("id"));
                 post.setTitle(res.getString( "title"));
                 post.setContent(res.getString( "content"));
+                post.setCurtidas(res.getInt("curtidas"));
                 posts.add(post);
             }
             res.close();

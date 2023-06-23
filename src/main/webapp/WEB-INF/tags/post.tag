@@ -58,7 +58,7 @@
                         <ion-icon name="heart-empty"></ion-icon>
                     </c:when>
                 </c:choose>
-                <p>${post.curtidas}</p>
+                <p class="p-0 m-0" id="postCurtidas">${post.curtidas}</p>
 
             </div>
 

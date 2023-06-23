@@ -172,12 +172,16 @@
          const list = await response.text();
          const listJson = JSON.parse(list);
 
+        console.log(listJson);
+         //Isolar isso aqui depois
          for (let i of listJson) {
              let post = document.querySelector('.post').cloneNode(true);
              console.log(i);
             post.querySelector('.user-info').querySelector('span').textContent = i.Id;
             post.querySelector('.post-content').textContent = i.Content;
+            post.querySelector('#postCurtidas').textContent = i.Curtidas;
             document.querySelector('#modal-comentario').appendChild(post);
+
          }
 
 
