@@ -65,58 +65,58 @@
 
         </div>
         <div class="col-6 main-area p-0">
-
-            <!-- Header area -->
-            <header>
-                <h3 id="page-title">Página Inicial</h3>
-                <div class="row">
-                    <div class="col-6 text-center type-content">
-                        Para você
-                    </div>
-                    <div class="col-6 text-center type-content">
-                        Seguindo
-                    </div>
-                </div>
-            </header>
-
-            <!-- Main-area-content -->
-            <div class="main-area-content">
-                <div class="row what-is-happen">
-                    <div class="col-1">
-                        <img src="imagens/dog.jpg" alt="user-image" srcset="">
-                    </div>
-                    <form method="post" action="post" class="col-11 d-flex flex-column gap-1">
-                        <div   class="text-area">
-                            <input type="text" name="action" id="action" value="createPost" class="d-none">
-                            <input type="number" name="idUser" id="idUser" value="<%= userId%>" class="d-none">
-                            <input type="text" name="wih" id="wih" placeholder="O que está acontecendo?">
+            <div class="main">
+                <!-- Header area -->
+                <header>
+                    <h3 id="page-title">Página Inicial</h3>
+                    <div class="row">
+                        <div class="col-6 text-center type-content">
+                            Para você
                         </div>
-                        <div class="bar"></div>
-                        <div class="d-flex justify-content-between">
-                            <div class="icons">
-                                <ion-icon name="images"></ion-icon>
-                                <ion-icon name="gift"></ion-icon>
-                                <ion-icon name="wallet"></ion-icon>
-                                <ion-icon name="logo-tux"></ion-icon>
-                                <ion-icon name="calendar" aria-labelledby="Programar" role="button" aria-roledescription="Programar"></ion-icon>
-                                <ion-icon name="pin"></ion-icon>
-                            </div>
-                            <div class="btns mb-2">
-                                <ion-icon name="add-circle-outline"></ion-icon>
-                                <button class="btnPattern" type="submit">Publicar</button>
-                            </div>
+                        <div class="col-6 text-center type-content">
+                            Seguindo
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </header>
+
+                <!-- Main-area-content -->
+                <div class="main-area-content">
+                    <div class="row what-is-happen">
+                        <div class="col-1">
+                            <img src="imagens/dog.jpg" alt="user-image" srcset="">
+                        </div>
+                        <form method="post" action="post" class="col-11 d-flex flex-column gap-1">
+                            <div   class="text-area">
+                                <input type="text" name="action" id="action" value="createPost" class="d-none">
+                                <input type="number" name="idUser" id="idUser" value="<%= userId%>" class="d-none">
+                                <input type="text" name="wih" id="wih" placeholder="O que está acontecendo?">
+                            </div>
+                            <div class="bar"></div>
+                            <div class="d-flex justify-content-between">
+                                <div class="icons">
+                                    <ion-icon name="images"></ion-icon>
+                                    <ion-icon name="gift"></ion-icon>
+                                    <ion-icon name="wallet"></ion-icon>
+                                    <ion-icon name="logo-tux"></ion-icon>
+                                    <ion-icon name="calendar" aria-labelledby="Programar" role="button" aria-roledescription="Programar"></ion-icon>
+                                    <ion-icon name="pin"></ion-icon>
+                                </div>
+                                <div class="btns mb-2">
+                                    <ion-icon name="add-circle-outline"></ion-icon>
+                                    <button class="btnPattern" type="submit">Publicar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
 
-                <div class="d-flex flex-column-reverse">
-                    <jsp:useBean id="dao" class="Dao.PostDao"/>
-                    <c:forEach varStatus="post.id" var="post" items="${dao.get(userId)}">
-                        <t:post  post="${post}" userPhoto="sinoco.jpg"  />
-                    </c:forEach>
+                    <div class="d-flex flex-column-reverse">
+                        <jsp:useBean id="dao" class="Dao.PostDao"/>
+                        <c:forEach varStatus="post.id" var="post" items="${dao.get(userId)}">
+                            <t:post  post="${post}" userPhoto="sinoco.jpg"  />
+                        </c:forEach>
 
-                </div>
+                    </div>
 
 
                     <div id="overlay" onclick="closeModal()"></div>
@@ -129,7 +129,9 @@
                         </div>
 
                     </div>
+                </div>
             </div>
+
 
         </div>
         <div class="col-3 topic-area">
@@ -151,8 +153,16 @@
 
     }
      function openModal(id) {
-        let data =  getPostComments(id);
-        console.log(data);
+        let listJson =  getPostComments(id);
+         for (let i of listJson) {
+             let post = document.querySelector('.post').cloneNode(true);
+             console.log(i);
+             post.querySelector('.user-info').querySelector('span').textContent = i.Id;
+             post.querySelector('.post-content').textContent = i.Content;
+             post.querySelector('#postCurtidas').textContent = i.Curtidas;
+             document.querySelector('#modal-comentario').appendChild(post);
+         }
+
         document.getElementById("overlay").style.display = "block";
         document.getElementById("modal-comentario").style.display = "block";
 
@@ -171,20 +181,7 @@
 
          const list = await response.text();
          const listJson = JSON.parse(list);
-
-        console.log(listJson);
-         //Isolar isso aqui depois
-         for (let i of listJson) {
-             let post = document.querySelector('.post').cloneNode(true);
-             console.log(i);
-            post.querySelector('.user-info').querySelector('span').textContent = i.Id;
-            post.querySelector('.post-content').textContent = i.Content;
-            post.querySelector('#postCurtidas').textContent = i.Curtidas;
-            document.querySelector('#modal-comentario').appendChild(post);
-
-         }
-
-
+            return listJson;
 
 
 
